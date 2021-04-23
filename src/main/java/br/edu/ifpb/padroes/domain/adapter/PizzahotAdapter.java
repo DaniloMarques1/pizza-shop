@@ -20,4 +20,14 @@ public class PizzahotAdapter implements Pizza {
     public String getName() {
         return pizzaHotPizza.getTopping();
     }
+
+    @Override
+    public void setPrice(Float price) {
+        this.pizzaHotPizza.setPrice(price);
+    }
+
+    @Override
+    public void setName(String name) {
+        this.pizzaHotPizza.setTopping(name);
+    }
 }

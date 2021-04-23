@@ -20,4 +20,14 @@ public class DamenosAdapter implements Pizza {
     public String getName() {
         return damenosPizza.getName();
     }
+
+    @Override
+    public void setPrice(Float price) {
+        this.damenosPizza.setCost(price);
+    }
+
+    @Override
+    public void setName(String name) {
+        this.damenosPizza.setName(name);
+    }
 }
