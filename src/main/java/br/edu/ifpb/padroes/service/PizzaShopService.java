@@ -10,7 +10,10 @@ import br.edu.ifpb.padroes.api.pizzahot.PizzaHotServiceImpl;
 import br.edu.ifpb.padroes.api.pizzahot.proxy.PizzaHotService;
 import br.edu.ifpb.padroes.api.pizzahot.proxy.PizzaHotServiceProxy;
 import br.edu.ifpb.padroes.domain.Pizza;
+import br.edu.ifpb.padroes.domain.adapter.DamenosAdapter;
+import br.edu.ifpb.padroes.domain.adapter.PizzahotAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PizzaShopService {
@@ -37,11 +40,29 @@ public class PizzaShopService {
     // TODO - implementar adapter para unificar pizzas vindas das APIs Damenos e PizzaHot num único método getPizzas()
     // TODO - public List<Pizza> getPizzas() {}
 
-    public List<DamenosPizza> getPizzasDamenos() {
+    public List<Pizza> getPizzas() {
+        List<DamenosAdapter> damenosPizzasAdapter = new ArrayList<>();
+        List<DamenosPizza> damenosPizzas = this.getPizzasDamenos();
+        for (DamenosPizza damenosPizza: damenosPizzas) {
+            damenosPizzasAdapter.add(new DamenosAdapter(damenosPizza));
+        }
+        List<PizzahotAdapter> pizzasHotAdapter = new ArrayList<>();
+        List<PizzaHotPizza> pizzasHot = this.getPizzasPizzaHot();
+        for (PizzaHotPizza pizza: pizzasHot) {
+            pizzasHotAdapter.add(new PizzahotAdapter(pizza));
+        }
+        List<Pizza> pizzas = new ArrayList<>();
+        pizzas.addAll(damenosPizzasAdapter);
+        pizzas.addAll(pizzasHotAdapter);
+
+        return pizzas;
+    }
+
+    private List<DamenosPizza> getPizzasDamenos() {
         return damenosService.getPizzas();
     }
 
-    public List<PizzaHotPizza> getPizzasPizzaHot() {
+    private List<PizzaHotPizza> getPizzasPizzaHot() {
         return pizzaHotService.getPizzas();
     }
 
