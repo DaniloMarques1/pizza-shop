@@ -27,7 +27,17 @@ public class Main {
 
         // TODO - implementar padrão decorator para só precisar passar o objeto pizza
 
-        pizzaShopService.orderPizza(pizza);
+        PizzaDecoratorImp pizzaDecorator = new DiscountCuponDecorator(
+                new ExtraCheeseDecorator(
+                        new PanPizzaDecorator(
+                                new StuffedCrustDecorator(
+                                        new PizzaDecoratorImp(pizza)
+                                )
+                        )
+                )
+        );
+
+        pizzaShopService.orderPizza(pizzaDecorator);
 
     }
 

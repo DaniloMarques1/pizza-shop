@@ -3,21 +3,22 @@ package br.edu.ifpb.padroes.api.decorator;
 import br.edu.ifpb.padroes.domain.Pizza;
 
 public class PanPizzaDecorator extends PizzaDecoratorImp {
-    public PanPizzaDecorator(PizzaDecorator pizzaDecorator) {
+    public PanPizzaDecorator(Pizza pizzaDecorator) {
         super(pizzaDecorator);
     }
 
     @Override
-    public void orderPizza(Pizza pizza) {
-        super.orderPizza(panPizza(pizza));
+    public Float getPrice() {
+        return panPizza(super.getPrice());
     }
 
-    private Pizza panPizza(Pizza pizza) {
-        Float totalPrice = pizza.getPrice();
-        totalPrice *= 1.15f; // 15% increase
-        pizza.setPrice(totalPrice);
-        pizza.setName(pizza.getName() + " (pan pizza)");
+    @Override
+    public String getName() {
+        return super.getName() + " (pan pizza)";
+    }
 
-        return pizza;
+    private Float panPizza(Float price) {
+        price *= 1.15f; // 15% increase
+        return price;
     }
 }

@@ -3,20 +3,17 @@ package br.edu.ifpb.padroes.api.decorator;
 import br.edu.ifpb.padroes.domain.Pizza;
 
 public class DiscountCuponDecorator extends PizzaDecoratorImp {
-    public DiscountCuponDecorator(PizzaDecorator pizzaDecorator) {
+    public DiscountCuponDecorator(Pizza pizzaDecorator) {
         super(pizzaDecorator);
     }
 
     @Override
-    public void orderPizza(Pizza pizza) {
-        super.orderPizza(discountCupon(pizza));
+    public Float getPrice() {
+        return discountCupon(super.getPrice());
     }
 
-    private Pizza discountCupon(Pizza pizza) {
-        Float totalPrice = pizza.getPrice();
-        totalPrice *= 0.75f; // 25% discount
-        pizza.setPrice(totalPrice);
-
-        return pizza;
+    private Float discountCupon(Float price) {
+        price *= 0.75f; // 25% discount
+        return price;
     }
 }

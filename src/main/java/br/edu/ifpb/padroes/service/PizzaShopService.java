@@ -27,17 +27,11 @@ public class PizzaShopService {
     // TODO - implementar decorator para não precisar atributos da pizza como parâmetros no método
     public void orderPizza(Pizza pizza) {
         // Isso poderia/deveria esta no cliente? (Main)
-        PizzaDecoratorImp pizzaDecorator = new DiscountCuponDecorator(
-                new ExtraCheeseDecorator(
-                        new PanPizzaDecorator(
-                                new StuffedCrustDecorator(
-                                        new PizzaDecoratorImp(new PizzaShop())
-                                )
-                        )
-                )
-        );
+        Float totalPrice = pizza.getPrice();
+        String name = pizza.getName();
 
-        pizzaDecorator.orderPizza(pizza);
+        System.out.println(String.format("New order for = %s", name));
+        System.out.println(String.format("Total price = %f", totalPrice));
     }
 
     // TODO - implementar adapter para unificar pizzas vindas das APIs Damenos e PizzaHot num único método getPizzas()
