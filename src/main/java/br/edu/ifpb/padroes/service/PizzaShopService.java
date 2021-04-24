@@ -41,19 +41,15 @@ public class PizzaShopService {
     // TODO - public List<Pizza> getPizzas() {}
 
     public List<Pizza> getPizzas() {
-        List<DamenosAdapter> damenosPizzasAdapter = new ArrayList<>();
+        ArrayList<Pizza> pizzas = new ArrayList<>();
         List<DamenosPizza> damenosPizzas = this.getPizzasDamenos();
         for (DamenosPizza damenosPizza: damenosPizzas) {
-            damenosPizzasAdapter.add(new DamenosAdapter(damenosPizza));
+            pizzas.add(new DamenosAdapter(damenosPizza));
         }
-        List<PizzahotAdapter> pizzasHotAdapter = new ArrayList<>();
         List<PizzaHotPizza> pizzasHot = this.getPizzasPizzaHot();
         for (PizzaHotPizza pizza: pizzasHot) {
-            pizzasHotAdapter.add(new PizzahotAdapter(pizza));
+            pizzas.add(new PizzahotAdapter(pizza));
         }
-        List<Pizza> pizzas = new ArrayList<>();
-        pizzas.addAll(damenosPizzasAdapter);
-        pizzas.addAll(pizzasHotAdapter);
 
         return pizzas;
     }
