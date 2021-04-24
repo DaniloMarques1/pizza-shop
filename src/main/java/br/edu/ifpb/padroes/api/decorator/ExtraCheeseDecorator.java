@@ -14,7 +14,7 @@ public class ExtraCheeseDecorator extends PizzaDecoratorImp {
 
     private Pizza extraCheese(Pizza pizza) {
         Float totalPrice = pizza.getPrice();
-        totalPrice = totalPrice + (totalPrice * 1.10f); // 10% increase
+        totalPrice *= 1.10f; // 10% increase
         pizza.setPrice(totalPrice);
         pizza.setName(pizza.getName() + " (extra cheese)");
         return pizza;

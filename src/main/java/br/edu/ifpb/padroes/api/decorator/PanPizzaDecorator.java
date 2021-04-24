@@ -14,7 +14,7 @@ public class PanPizzaDecorator extends PizzaDecoratorImp {
 
     private Pizza panPizza(Pizza pizza) {
         Float totalPrice = pizza.getPrice();
-        totalPrice = totalPrice + (totalPrice * 1.15f); // 15% increase
+        totalPrice *= 1.15f; // 15% increase
         pizza.setPrice(totalPrice);
         pizza.setName(pizza.getName() + " (pan pizza)");
 

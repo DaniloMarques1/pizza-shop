@@ -14,7 +14,7 @@ public class DiscountCuponDecorator extends PizzaDecoratorImp {
 
     private Pizza discountCupon(Pizza pizza) {
         Float totalPrice = pizza.getPrice();
-        totalPrice = totalPrice + ( totalPrice * 0.25f ); // 25% discount
+        totalPrice *= 0.75f; // 25% discount
         pizza.setPrice(totalPrice);
 
         return pizza;

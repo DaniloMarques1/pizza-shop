@@ -14,7 +14,7 @@ public class StuffedCrustDecorator extends PizzaDecoratorImp {
 
     private Pizza stuffedCrust(Pizza pizza) {
         Float totalPrice = pizza.getPrice();
-        totalPrice = totalPrice + ( totalPrice * 1.20f); // 20% increase
+        totalPrice *= 1.20f; // 20% increase
         pizza.setPrice(totalPrice);
         pizza.setName(pizza.getName() + " (stuffed crust)");
 
